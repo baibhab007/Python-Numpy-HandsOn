@@ -10,3 +10,9 @@ x[b]
 
 x[b,:,1:3]
 ####
+
+import numpy as np
+x = np.arange(1,31).reshape(2,3,5)
+b = np.array([True,False]).reshape(2,)
+print(x[b])
+print(x[b,:,1:3])
