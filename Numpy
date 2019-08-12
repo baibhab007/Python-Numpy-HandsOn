@@ -1,0 +1,276 @@
+NumPy
+
+1. Knowledge Discovery Process:
+Problem Definition
+Data Collection
+Data Preprocessing
+Data Transformation
+Data Mining
+Data Analysis
+Data Visualization
+
+python libraries:
+
+Numpy:
+Holds data in N-dimensional array (ndarray) objects, which can store data in multiple dimensions.
+Supports performing efficient array operations through Broadcasting feature
+
+Pandas:
+Provides functionality to deal with structured data.
+Stores Data in different Primary data structures: Series, DataFrame and Panel (other libraries are Dask and Numba)
+SciPy:
+A collection of efficient numerical algorithms used in Numerical integration, Signal processing and Optimization
+
+NLTK:
+Performs different tasks related to Natural Language Processing.
+
+scikit-learn:
+Python library used for Machine learning (other libraries are TensorFlow and Theano)
+
+Jupyter:
+Provides web based interactive computational environment.
+Combines code, rich text, plots, media and mathematical equations together
+
+matplotlib:
+Widely used for Data Visualization.
+Used to generate various types of plots.(Other libraries are Datashader and Holoviews)
+Bokeh:
+Offers interactive Web visualization features.
+
+PyMongo:
+PyMongo distribution comprises tools for working with MongoDB.
+MongoDB is a highly scalable and robust NoSQL database.
+
+2. Scientific Distribution
+Manually installing libraries could be error prone or time consuming for which scientific distribution is in place like 
+Anaconda
+Enthought Python
+PythonXY
+WinPython
+
+Download Anaconda from https://www.anaconda.com/distribution/
+
+Home Window:
+Enables launching working environment through various modes like Jupyter Notebooks, Jupyter qt-console, and Sypder IDE
+
+Environment Window:
+Shows information about various available environments.
+Details of packages installed for each available environment is viewable.
+
+Project Window:
+Provides tools for managing Anaconda projects.
+
+Learning Window:
+Provides access to popular Data Science Resources.
+
+Community Window:
+Provides links to popular Data Science Events, Forums, Blogs, etc.
+
+Anaconda prompt : CLI for anaconda
+Conda: anaconda's package manager
+Command for viewing available environments : conda info --envs
+Create new environment : conda create --name testenv python=3.7
+Command for activating : activate testenv
+Command for viewing available packages : conda list
+
+Install numpy package: conda install numpy
+
+3. IPython
+provides interactive working environment
+components : interactive python shell, jupyter kernel
+
+Jupyter Qt Console
+
+Magic method : begins with %(line magic method) or %%(cell magic method)
+
+%pwd
+%mkdir tempsessiondir
+%pwd?
+%mkdir?
+%pwd
+cd tempsessiondir
+!type NULL > firspythonscript.py
+%edit firspythonscript.py
+%run firspythonscript.py 
+
+In [8]: a=15
+In [9]: %save set_a.py 8
+In [10]: a=37
+In [11]: %run set_a.py
+In [12]: a (will give old value i.e 15)
+In [13]: %edit set_a.py (change the value of a)
+In [14]: %run set_a.py
+In [15]: a (display the new value)
+
+4. Jupyter Notebook Server
+
+Three tabs : Files, Running, Clusters
+
+Create folder, create new python 3 notebook, Cell
+markdown : headers (#), emphasizing text (* or -), unordered lists (*, - +), ordered lists (number followed with a dot and a space), nested unordered lists (indexed with a minimum of four spaces and followed with symbol),
+		   justifying text of a list element(two spaces, at the end of each line are used to justify multiple lines of text), code snippets (pair of three back quotes),
+		   hyperlinks(text, written in a pair of square brackets is liked to a hyperlink, specified in a pair of parenthesis), reference links(text and reference both are written in two different pairs of square brackets),
+		   HTML content(HTML tags can be directly used)
+
+
+5. NumPy
+Python libraries supporting numerical operations on arrays holding numeric data called as N-dimensional arrays or ndarrays(all element are of same data type and each data element has fixed size)
+		   
+import numpy as np
+x = np.array([single dimensional or multidimensional array])
+ndim, shape, size, dtype, itemsize, nbytes are few attributes
+dtype is important as it defines the data type of the array which can be defined as np.array([single dimensional or multidimensional array],dtype='float64')
+
+Creation of ndarray:
+--From Python built-in datatypes : lists or tuples
+a = [[[4.1, 2.5], [1.1, 2.3], [9.1, 2.5]], 
+     [[8.6, 9.9],[3.6, 4.3], [6.6, 0.3]]]
+x = np.array(a, dtype='float64')
+--Using Numpy array creation methods like ones, ones_like, zeros, zeros_like, eye
+x = np.zeros(shape=(2,4))
+y = np.full(shape=(2,3), fill_value=10.5)
+--Using Numpy numeric sequence generators
+x = np.arange(3, 15, 2.5)
+y = np.linspace(3, 15, 5)
+--Using Numpy random module
+np.random.seed(100)
+x = np.random.rand(2) # 2 random numbers between 0 and 1
+y = np.random.randint(10, 50, 3) # 3 random integers between 10 and 50
+--Simulating normal distribution
+np.random.seed(100)
+x = np.random.randn(3) # Standard normal distribution
+y = 10 + 2*np.random.randn(3) # normal distribution with mean 10 and sd 2
+--By reading data from a file
+from io import StringIO
+import numpy as np
+x = StringIO('''88.25 93.45 72.60 90.90
+72.3 78.85 92.15 65.75
+90.5 92.45 89.25 94.50
+''')
+d = np.loadtxt(x,delimiter=' ')
+
+
+6. Array shape manipulation
+x = np.random.randint(10,100,8)
+y = x.reshape(2,4)
+z = x.reshape(2,2,2)
+print(y)
+print(z)
+
+Stacking arrays vertically
+2 or more array can be joined vertically using the vstack method
+x = np.array([[-1,1], [-3,3]])
+y = np.array([[-2,2], [-4,4]])
+np.vstack((x,y))
+
+Stacking arrays horizontally
+1 or more arrays can be joined horizontally using the hstack method
+x = np.array([[-1, 1], [-3, 3]])
+y = np.array([[-2, 2], [-4, 4]])
+z = np.array([[-5, 5], [-6, 6]])
+np.hstack((x,y,z))
+
+Splitting arrays vertically
+Arrays can be split vertically using the vsplit method
+x = np.arange(30).reshape(6, 5)
+res = np.vsplit(x, 2)
+print(res[0], end='\n\n')
+print(res[1])
+It is also possible to split at specific row numbers using vsplit
+x = np.arange(30).reshape(6, 5)
+res = np.vsplit(x, (2, 5))
+print(res[0], end='\n\n')
+print(res[1], end='\n\n')
+print(res[2])
+
+Splitting arrays Horizontally
+Arrays can be split horizontally using the hsplit method
+x = np.arange(10).reshape(2, 5)
+res = np.hsplit(x, (2,4))
+print(res[0], end='\n\n')
+print(res[1], end='\n\n')
+print(res[2])
+
+7. Basic operations in Scalars
+x = np.arange(6).reshape(2,3)
+print(x + 10, end='\n\n')
+print(x * 3, end='\n\n')
+print(x % 2)
+
+x = np.array([[-1, 1], [-2, 2]])
+y = np.array([[4, -4], [5, -5]])
+print(x + y, end='\n\n')
+print(x * y)
+
+It is also possible to perform operations on arrays with varying size and shape
+x = np.array([[-1, 1], [-2, 2]])
+y = np.array([-10, 10])
+print(x * y)
+
+Broadcasting in NumPy
+Element wise operations between arrays are possible only when they have the same shape or compatible for Broadcasting
+
+Steps followed to verify the feasibility of Broadcasting between arrays are:
+-Initially, compare the dimensions of all arrays.
+-If dimensions do not match, prepend 1's to shape of a smaller array so that it matches dimensions of a larger array.
+-Start comparing array shapes from the last dimension and move backward.
+-If the shape of both arrays are equal or either of it has a shape of 1, continue the comparison.
+-Else at any dimension, if step 4 fails, broadcasting between arrays is not feasible.
+
+Finally, the resulted broadcasting array shape would be maximum of two compared shapes in each dimension.
+
+Numpy Universal Functions
+https://docs.scipy.org/doc/numpy/reference/ufuncs.html
+x = np.array([[0,1], [2,3]])
+print(np.square(x), end='\n\n')
+print(np.sin(x))
+
+Numpy Array Methods
+Many of the universal functions are available as methods of ndarray class
+x = np.array([[0,1], [2, 3]])
+print(x.sum(), end='\n\n')
+print(x.sum(axis=0), end='\n\n')
+print(x.sum(axis=1))
+
+x=np.random.randn(12)
+y=np.random.randn(12)
+print(np.add(x,y))
+print(np.minimum(x,y))
+
+8. Indexing, Slicing a 1-D ndarray
+x = np.array([5, 10, 15, 20, 25, 30, 35])
+print(x[1])  # Indexing
+print(x[1:6]) # Slicing
+print(x[1:6:3]) # Slicing
+
+Indexing, Slicing a 2-D ndarray
+y = np.array([[0, 1, 2],
+              [3, 4, 5]])
+print(y[1:2, 1:3]) 
+print(y[1])   
+print(y[:, 1]) 
+
+Slicing Higher Dimensions ndarrays
+z = np.array([[[-1, 1], [-2, 2]],
+              [[-4, 4], [-5, 5]],
+              [[-7, 7], [-9, 9]]])
+print(z[1,:,1]) # index 1 element in row of index 1
+print(z[1:,1,:]) # From all outer rows except the first, select 1st index element (which itself is an array) completely.
+print(z[2]) # print 2nd index element
+
+Iterating using 'for'
+x = np.array([[-1, 1], [-2, 2]])
+for row in x:
+    print('Row :',row)
+	
+Iterating using 'nditer'
+x = np.array([[0,1], [2, 3]])
+for a in np.nditer(x):
+    print(a)
+
+Boolean Indexing
+x = np.arange(10).reshape(2,5)
+condition = x % 2 == 0
+print(condition)
+print(x[condition])
+
