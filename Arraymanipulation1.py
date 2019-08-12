@@ -13,4 +13,4 @@ import numpy as np
 x=np.arange(1,21)
 print(x.shape)
 y=x.reshape(2,10)
-print(np.vsplit(y,2))
+print(np.hsplit(y,2))
