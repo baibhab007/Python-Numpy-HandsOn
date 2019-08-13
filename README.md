@@ -1,2 +1,2 @@
-# Python-HandsOn
-Python handson and mini projects
+# Python-Numpy HandsOn
+Python Numpy handson and mini projects
